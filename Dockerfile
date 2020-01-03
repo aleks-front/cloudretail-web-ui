@@ -4,14 +4,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --no-cache
 COPY . ./
-COPY tsconfig.json tslint.json webpack.config.js ./
-RUN npx webpack -p
-RUN find ./dist -type f | xargs gzip -k
+RUN npm run build
+RUN find ./build -type f | xargs gzip -k
 
 FROM alpine
 RUN apk add --no-cache nginx
 RUN mkdir -p /run/nginx/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/local/nginx/html/
+COPY --from=build /app/build /usr/local/nginx/html/
 EXPOSE 80
 CMD ["nginx","-g","daemon off;"]
