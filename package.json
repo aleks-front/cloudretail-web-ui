@@ -50,11 +50,11 @@
     "trailingComma": "all"
   },
   "lint-staged": {
-    "src/**/*.{html,css,scss,json}": [
+    "public/**/*.html": [
       "prettier --write",
       "git add"
     ],
-    "src/**/*.{js,jsx,ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write",
       "git add"
