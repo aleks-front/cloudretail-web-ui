@@ -5,23 +5,26 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js'
+    filename: 'index.js',
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js']
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
   plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
   module: {
-    rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }]
+    rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }],
   },
   stats: {
     children: false,
-    modules: false
+    modules: false,
   },
   devServer: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
     stats: {
       children: false,
-      modules: false
-    }
-  }
+      modules: false,
+    },
+  },
 };
