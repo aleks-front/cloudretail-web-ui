@@ -1,29 +1,33 @@
 import React, { FunctionComponent } from 'react';
-import { connect } from 'react-redux';
-import { addProductRequest } from '../../redux/actionCreators';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../redux/slices/productsSlice';
 
-export const ProductItemPage: FunctionComponent<any> = ({ addProduct }) => (
-  <form autoComplete="off" onSubmit={addProduct}>
-    <div>
-      <div>
-        <button>Save</button>
-      </div>
+export const ProductItemPage: FunctionComponent = () => {
+  const dispatch = useDispatch();
+
+  const addProduct = product => {
+    dispatch(actions.addRequest(product));
+  };
+
+  return (
+    <form autoComplete="off" onSubmit={addProduct}>
       <div>
         <div>
-          <label>Name</label>
-          <input type="text" name="name" />
+          <button>Save</button>
         </div>
         <div>
-          <label>Price</label>
-          <input type="number" name="price" />
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" />
+          </div>
+          <div>
+            <label>Price</label>
+            <input type="number" name="price" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-);
-
-export const mapDispatchToProps = {
-  addProduct: addProductRequest,
+    </form>
+  );
 };
 
-export default connect(null, mapDispatchToProps)(ProductItemPage);
+export default ProductItemPage;

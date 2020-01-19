@@ -1,12 +1,16 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import fetchCategories from '../../api/categories/fetchCategories';
-import { fetchCategoriesFailure, fetchCategoriesSuccess } from '../actionCreators';
+import { actions } from '../slices/categoriesSlice';
 
-export default function*() {
+export function* fetchCategoriesSaga() {
   try {
     const categories = yield call(fetchCategories);
-    yield put(fetchCategoriesSuccess(categories));
+    yield put(actions.fetchListSuccess(categories));
   } catch (error) {
-    yield put(fetchCategoriesFailure(error));
+    yield put(actions.fetchListFailure(error));
   }
+}
+
+export default function*() {
+  yield takeLatest(actions.fetchListRequest.type, fetchCategoriesSaga);
 }

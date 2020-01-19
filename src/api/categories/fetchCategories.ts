@@ -1,5 +1,3 @@
 import json from '../json';
 
-export default () => {
-  return json(fetch('/categories'));
-};
+export default () => json(fetch('/categories'));

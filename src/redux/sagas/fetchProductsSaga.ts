@@ -1,12 +1,16 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import fetchProducts from '../../api/products/fetchProducts';
-import { fetchProductsFailure, fetchProductsSuccess } from '../actionCreators';
+import { actions } from '../slices/productsSlice';
 
-export default function*() {
+export function* fetchProductsSaga() {
   try {
     const products = yield call(fetchProducts);
-    yield put(fetchProductsSuccess(products));
+    yield put(actions.fetchListSuccess(products));
   } catch (error) {
-    yield put(fetchProductsFailure(error));
+    yield put(actions.fetchListFailure(error));
   }
+}
+
+export default function*() {
+  yield takeLatest(actions.fetchListRequest.type, fetchProductsSaga);
 }

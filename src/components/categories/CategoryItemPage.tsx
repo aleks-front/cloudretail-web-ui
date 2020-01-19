@@ -1,25 +1,29 @@
 import React, { FunctionComponent } from 'react';
-import { connect } from 'react-redux';
-import { addCategoryRequest } from '../../redux/actionCreators';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../redux/slices/categoriesSlice';
 
-export const CategoryItemPage: FunctionComponent<typeof mapDispatchToProps> = ({ addCategory }) => (
-  <form autoComplete="off" onSubmit={addCategory}>
-    <div>
-      <div>
-        <button>Save</button>
-      </div>
+export const CategoryItemPage: FunctionComponent = () => {
+  const dispatch = useDispatch();
+
+  const addCategory = category => {
+    dispatch(actions.addRequest(category));
+  };
+
+  return (
+    <form autoComplete="off" onSubmit={addCategory}>
       <div>
         <div>
-          <label>Name</label>
-          <input type="text" name="name" />
+          <button>Save</button>
+        </div>
+        <div>
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-);
-
-export const mapDispatchToProps = {
-  addCategory: addCategoryRequest,
+    </form>
+  );
 };
 
-export default connect(null, mapDispatchToProps)(CategoryItemPage);
+export default CategoryItemPage;

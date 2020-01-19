@@ -7,6 +7,7 @@
     "start": "webpack-dev-server -d"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "~1.2.0",
     "react": "~16.12.0",
     "react-dom": "~16.12.0",
     "react-redux": "~7.1.0",
@@ -32,7 +33,8 @@
     "webpack-dev-server": "~3.10.0"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

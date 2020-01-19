@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import categories from './reducers/categoriesReducer';
-import products from './reducers/productsReducer';
+import { reducer as categories } from './slices/categoriesSlice';
+import { reducer as products } from './slices/productsSlice';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   categories,
   products,
 });
+
+export type State = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
