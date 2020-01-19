@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import fetchCategories from '../../api/categories/fetchCategories';
+import fetchCategories from '../../api/fetchCategories';
 import { actions } from '../slices/categoriesSlice';
 
 export function* fetchCategoriesSaga() {

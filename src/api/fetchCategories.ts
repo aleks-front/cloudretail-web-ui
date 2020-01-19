@@ -1,3 +1,3 @@
-import json from '../json';
+import json from './json';
 
 export default () => json(fetch('/categories'));

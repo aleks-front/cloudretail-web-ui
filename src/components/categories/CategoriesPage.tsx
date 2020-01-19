@@ -4,7 +4,9 @@ import { Route } from 'react-router-dom';
 import CategoryItemPage from './CategoryItemPage';
 import CategoryListPage from './CategoryListPage';
 
-export const CategoriesPage: FunctionComponent<RouteComponentProps> = ({ match }) => (
+export const CategoriesPage: FunctionComponent<RouteComponentProps> = ({
+  match,
+}) => (
   <div>
     <Route path={`${match.url}/new`} component={CategoryItemPage} />
     <Route path={`${match.url}`} component={CategoryListPage} />
