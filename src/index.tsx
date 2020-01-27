@@ -1,15 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import App from './components/App';
-import store from './redux/store';
+import ReactDOM from 'react-dom';
 
-render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('app'),
-);
+ReactDOM.render(<h1>Cloud Retail</h1>, document.getElementById('app'));
