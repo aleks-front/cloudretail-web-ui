@@ -10,20 +10,20 @@ export const { actions, reducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    validatePreviousLoginRequest: state => ({
+    validatePreviousLoginRequest: (state) => ({
       ...state,
       isValidating: true,
     }),
-    validatePreviousLoginResponse: state => ({
+    validatePreviousLoginResponse: (state) => ({
       ...state,
       isValidating: false,
       isLoggedIn: true,
     }),
-    loginRequest: state => ({
+    loginRequest: (state) => ({
       ...state,
       isLoggingIn: true,
     }),
-    loginResponse: state => ({
+    loginResponse: (state) => ({
       ...state,
       isLoggingIn: false,
     }),
