@@ -12,7 +12,10 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      meta: { build_time: new Date().toISOString() },
+    }),
     new MiniCssExtractPlugin({ filename: 'index.css' }),
   ],
   module: {
