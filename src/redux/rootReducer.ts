@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { reducer as auth } from '../reducers/authReducer';
+import { authReducer as auth } from '../slices/authSlice';
 
 export const rootReducer = combineReducers({
   auth,
 });
+
+export type State = typeof rootReducer;

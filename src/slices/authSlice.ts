@@ -6,7 +6,7 @@ const initialState = {
   isValidating: false,
 };
 
-export const { actions, reducer } = createSlice({
+export const { actions: authActions, reducer: authReducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -14,16 +14,25 @@ export const { actions, reducer } = createSlice({
       ...state,
       isValidating: true,
     }),
-    validatePreviousLoginResponse: (state) => ({
+    validatePreviousLoginSuccess: (state) => ({
       ...state,
       isValidating: false,
       isLoggedIn: true,
+    }),
+    validatePreviousLoginFailure: (state) => ({
+      ...state,
+      isValidating: false,
+      isLoggedIn: false,
     }),
     loginRequest: (state) => ({
       ...state,
       isLoggingIn: true,
     }),
-    loginResponse: (state) => ({
+    loginSuccess: (state) => ({
+      ...state,
+      isLoggingIn: false,
+    }),
+    loginFailure: (state) => ({
       ...state,
       isLoggingIn: false,
     }),
