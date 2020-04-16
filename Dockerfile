@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --no-cache
 COPY . ./
+RUN node -e "console.log(JSON.stringify({ build_time: new Date() }))" > src/build.json
 RUN npm run build
 RUN find ./build -type f | xargs gzip -k
 
