@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isLoggedIn: false,
-  isLoggingIn: false,
+  isSignedIn: false,
+  isSigningIn: false,
   isValidating: false,
 };
 
@@ -10,31 +10,31 @@ export const { actions: authActions, reducer: authReducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    validatePreviousLoginRequest: (state) => ({
+    validatePreviousSessionRequest: (state) => ({
       ...state,
       isValidating: true,
     }),
-    validatePreviousLoginSuccess: (state) => ({
+    validatePreviousSessionSuccess: (state) => ({
       ...state,
       isValidating: false,
-      isLoggedIn: true,
+      isSignedIn: true,
     }),
-    validatePreviousLoginFailure: (state) => ({
+    validatePreviousSessionFailure: (state) => ({
       ...state,
       isValidating: false,
-      isLoggedIn: false,
+      isSignedIn: false,
     }),
-    loginRequest: (state) => ({
+    signInRequest: (state) => ({
       ...state,
-      isLoggingIn: true,
+      isSigningIn: true,
     }),
-    loginSuccess: (state) => ({
+    signInSuccess: (state) => ({
       ...state,
-      isLoggingIn: false,
+      isSigningIn: false,
     }),
-    loginFailure: (state) => ({
+    signInFailure: (state) => ({
       ...state,
-      isLoggingIn: false,
+      isSigningIn: false,
     }),
   },
 });
