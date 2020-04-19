@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
-import { validatePreviousSessionSaga } from '../sagas/validatePreviousSessionSaga';
+import { watchSignInSaga } from '../sagas/signInSaga';
+import { watchValidatePreviousSessionSaga } from '../sagas/validatePreviousSessionSaga';
 
 export function* rootSaga() {
-  yield all([validatePreviousSessionSaga()]);
+  yield all([watchValidatePreviousSessionSaga(), watchSignInSaga()]);
 }

@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { App } from './components/App';
+import { BuildInfo } from './components/BuildInfo';
+import { GlobalStyles } from './components/GlobalStyles';
+import { history } from './history';
 import { store } from './redux/store';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
+      <GlobalStyles />
+      <BuildInfo />
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

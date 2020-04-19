@@ -1,40 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+export interface SignInRequestPayload {
+  username: string;
+  password: string;
+}
 
 const initialState = {
-  isSignedIn: false,
+  isValidationRequired: true,
+  isFetchingAuthToken: false,
   isSigningIn: false,
-  isValidating: false,
+  isSignedIn: false,
 };
 
 export const { actions: authActions, reducer: authReducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    validatePreviousSessionRequest: (state) => ({
+    validatePreviousSession: (state) => state,
+    disableValidationRequire: (state) => ({
       ...state,
-      isValidating: true,
+      isValidationRequired: false,
     }),
-    validatePreviousSessionSuccess: (state) => ({
+    fetchAuthTokenRequest: (state) => ({
       ...state,
-      isValidating: false,
+      isFetchingAuthToken: true,
+    }),
+    fetchAuthTokenSuccess: (state) => ({
+      ...state,
+      isFetchingAuthToken: false,
       isSignedIn: true,
     }),
-    validatePreviousSessionFailure: (state) => ({
+    fetchAuthTokenFailure: (state) => ({
       ...state,
-      isValidating: false,
+      isFetchingAuthToken: false,
       isSignedIn: false,
     }),
-    signInRequest: (state) => ({
+    signInRequest: (state, _action: PayloadAction<SignInRequestPayload>) => ({
       ...state,
       isSigningIn: true,
     }),
     signInSuccess: (state) => ({
       ...state,
       isSigningIn: false,
+      isSignedIn: true,
     }),
-    signInFailure: (state) => ({
+    signInFailure: (state, _action: PayloadAction<Error>) => ({
       ...state,
       isSigningIn: false,
+      isSignedIn: false,
     }),
   },
 });
