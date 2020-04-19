@@ -19,13 +19,19 @@ export const SignInPage = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {() => (
           <Form>
-            <Field type="text" name="username" />
-            <ErrorMessage name="username" component="div" />
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-            <button type="submit" disabled={isSigningIn}>
-              Submit
-            </button>
+            <div>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" />
+            </div>
+            <div>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" />
+            </div>
+            <div>
+              <button type="submit" disabled={isSigningIn}>
+                Submit
+              </button>
+            </div>
           </Form>
         )}
       </Formik>

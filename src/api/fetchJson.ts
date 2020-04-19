@@ -18,5 +18,9 @@ export const fetchJson = async ({
     headers: { ...headers, 'Content-Type': 'application/json' },
     body: body ? JSON.stringify(body) : undefined,
   });
-  return request.json();
+  const json = await request.json();
+  if (request.status >= 200 && request.status < 300) {
+    return json;
+  }
+  throw new Error(json.message);
 };
