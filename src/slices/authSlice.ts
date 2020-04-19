@@ -6,9 +6,10 @@ export interface SignInRequestPayload {
 }
 
 const initialState = {
-  isValidationRequired: true,
+  authToken: null,
   isFetchingAuthToken: false,
   isSigningIn: false,
+  isSigningOut: false,
   isSignedIn: false,
 };
 
@@ -17,16 +18,13 @@ export const { actions: authActions, reducer: authReducer } = createSlice({
   initialState,
   reducers: {
     validatePreviousSession: (state) => state,
-    disableValidationRequire: (state) => ({
-      ...state,
-      isValidationRequired: false,
-    }),
     fetchAuthTokenRequest: (state) => ({
       ...state,
       isFetchingAuthToken: true,
     }),
-    fetchAuthTokenSuccess: (state) => ({
+    fetchAuthTokenSuccess: (state, { payload }: PayloadAction<any>) => ({
       ...state,
+      authToken: payload,
       isFetchingAuthToken: false,
       isSignedIn: true,
     }),
@@ -39,8 +37,9 @@ export const { actions: authActions, reducer: authReducer } = createSlice({
       ...state,
       isSigningIn: true,
     }),
-    signInSuccess: (state) => ({
+    signInSuccess: (state, { payload }: PayloadAction<any>) => ({
       ...state,
+      authToken: payload,
       isSigningIn: false,
       isSignedIn: true,
     }),
@@ -48,6 +47,12 @@ export const { actions: authActions, reducer: authReducer } = createSlice({
       ...state,
       isSigningIn: false,
       isSignedIn: false,
+    }),
+    signOutRequest: (state) => ({ ...state, isSigningOut: true }),
+    signOutSuccess: (state) => ({ ...state, isSigningOut: false }),
+    signOutFailure: (state, _action: PayloadAction<Error>) => ({
+      ...state,
+      isSigningOut: false,
     }),
   },
 });

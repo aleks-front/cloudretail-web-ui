@@ -8,10 +8,11 @@ import { authActions, SignInRequestPayload } from '../slices/authSlice';
 export function* signInSaga({ payload }: PayloadAction<SignInRequestPayload>) {
   try {
     const result = yield call(signIn, payload);
-    yield put(authActions.signInSuccess());
+    yield put(authActions.signInSuccess(result));
     localStorage.setItem(authTokenKey, result.id);
     history.push('/');
   } catch (error) {
+    console.error(error);
     yield put(authActions.signInFailure(error));
   }
 }

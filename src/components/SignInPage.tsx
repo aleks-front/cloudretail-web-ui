@@ -10,13 +10,13 @@ export const SignInPage = () => {
 
   const initialValues = { username: '', password: '' };
 
-  const handleSubmit = (values) => {
+  const signIn = (values) => {
     dispatch(authActions.signInRequest(values));
   };
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={signIn}>
         {() => (
           <Form>
             <div>

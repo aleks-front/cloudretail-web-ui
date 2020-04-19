@@ -4,14 +4,14 @@ import { authTokenKey } from '../constants';
 import { authActions } from '../slices/authSlice';
 
 export function* validatePreviousSessionSaga() {
-  yield put(authActions.disableValidationRequire());
   const authToken = localStorage.getItem(authTokenKey);
   if (authToken) {
     yield put(authActions.fetchAuthTokenRequest());
     try {
-      yield call(validatePreviousSession, authToken);
-      yield put(authActions.fetchAuthTokenSuccess());
+      const result = yield call(validatePreviousSession, authToken);
+      yield put(authActions.fetchAuthTokenSuccess(result));
     } catch (error) {
+      console.error(error);
       yield put(authActions.fetchAuthTokenFailure());
       localStorage.removeItem(authTokenKey);
     }
