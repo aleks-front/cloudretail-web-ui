@@ -15,7 +15,7 @@ export const App = () => {
   const auth = useSelector((state: State) => state.auth);
 
   if (auth.isValidationRequired || auth.isFetchingAuthToken) {
-    return <h1>Validating...</h1>;
+    return null;
   }
 
   return (
