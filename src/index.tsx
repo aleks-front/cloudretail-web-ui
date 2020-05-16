@@ -9,12 +9,14 @@ import { history } from './history';
 import { store } from './redux/store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <GlobalStyles />
-      <BuildInfo />
-      <App />
-    </Router>
-  </Provider>,
+  <>
+    <GlobalStyles />
+    <Provider store={store}>
+      <Router history={history}>
+        <BuildInfo />
+        <App />
+      </Router>
+    </Provider>
+  </>,
   document.getElementById('app')
 );

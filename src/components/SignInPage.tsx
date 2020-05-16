@@ -20,7 +20,7 @@ export const SignInPage = () => {
         {() => (
           <Form>
             <div>
-              <Field type="text" name="username" />
+              <Field type="text" name="username" autoFocus />
               <ErrorMessage name="username" component="div" />
             </div>
             <div>
